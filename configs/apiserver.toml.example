@@ -1,0 +1,33 @@
+version = "0.0.2"
+bind_addr = ":8082"
+log_level = "info"
+
+service = "server"
+service_id = "b4521eb1-fae2-4260-bf37-c7f5131264cf" #service resource id
+database_url = "host=10.0.0.13 dbname=stock sslmode=disable user=autocarat password=autocarat"
+
+token_refresh_secret = "123456"
+token_auth_secret = "123456"
+static_path = "./web/static/" #web source
+files_path = "./web/static/files/"
+files_url_prefix = "/files/"
+telegram_chat_id = "-123123123"
+telegram_bot_id = "xxx:xxx-xxx"
+is_development = true
+# SSL_cert_path = "../cert/localhost.crt"
+# SSL_key_path = "../cert/localhost.key"
+rabbitmq_url = "amqp://login:login@10.0.0.10:5672/"
+rabbitmq_queue_name = "autocarat.login.q.dev"
+guide_path = "./files/web/static/files/guide/" # user guide files, sample: "./web/static/files/guide/"
+
+[opensearch]
+urls = ["https://10.0.0.24:9200"]
+user = "admin"
+password = "admin"
+
+[database]
+main = "host=10.0.0.23 dbname=product-service sslmode=disable user=user password=password"
+read = [
+    "host=10.0.0.26 dbname=product-service sslmode=disable user=user password=password",
+    "host=10.0.0.27 dbname=product-service sslmode=disable user=user password=password"
+]

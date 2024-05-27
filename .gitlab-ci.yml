@@ -1,0 +1,32 @@
+stages:
+  - test
+  - build
+
+unit-test-job:
+  stage: test
+  image: golang
+  only:
+    - main
+    - merge_requests
+  script:
+    - echo "================ Running unit tests ================="
+    - export CGO_ENABLED=0
+    - make test
+    - echo "================= Running unit tests complete ======================="
+
+build-backend-job:
+  stage: build
+  image: golang
+  only:
+    - main
+    - merge_requests
+  script:
+    - echo "================ Build backend project ================="
+    - export CGO_ENABLED=0
+    - make build
+    - echo "================= Build complete ======================="
+  artifacts:
+    when: always
+    paths:
+      - backend/apiserver
+    expire_in: 1 week
